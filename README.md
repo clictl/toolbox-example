@@ -2,8 +2,6 @@
 
 A working example of a [clictl](https://clictl.dev) toolbox repository. Use this as a template for creating and publishing your own tools.
 
-A [Soap Bucket LLC](https://www.soapbucket.org) project.
-
 ## Quick Start
 
 1. Use this repo as a template on GitHub
@@ -118,3 +116,5 @@ branches:
 - [Official Toolbox](https://github.com/clictl/toolbox) - 223+ curated tool specs
 - [Spec Format](https://github.com/clictl/toolbox/blob/main/SPEC_SCHEMA.md) - Full spec schema
 - [clictl.dev](https://clictl.dev) - Website
+
+A [Soap Bucket LLC](https://www.soapbucket.org) project.
