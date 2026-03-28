@@ -1,0 +1,120 @@
+# clictl Toolbox Example
+
+A working example of a [clictl](https://clictl.dev) toolbox repository. Use this as a template for creating and publishing your own tools.
+
+A [Soap Bucket LLC](https://www.soapbucket.org) project.
+
+## Quick Start
+
+1. Use this repo as a template on GitHub
+2. Edit `.clictl.yaml` with your workspace slug
+3. Add `CLICTL_API_KEY` and `CLICTL_WORKSPACE` to your repo secrets
+4. Add tool specs under `toolbox/`
+5. Push. The GitHub Action syncs your tools automatically.
+
+## Folder Structure
+
+```
+toolbox/                              # All tool specs live here
+  echo/
+    echo.yaml                         # REST API spec
+    0.9.yaml                          # Pinned older version
+  example-docs/
+    example-docs.yaml                 # Website scraping spec
+  example-mcp/
+    example-mcp.yaml                  # MCP server spec
+  example-skill/
+    example-skill.yaml                # Skill spec
+  hello-world/
+    hello-world.yaml                  # REST API spec
+.clictl.yaml                          # Toolbox config (workspace, spec paths)
+.github/workflows/sync-to-clictl.yml  # CI sync on push
+```
+
+**Key rules:**
+- Specs live under `toolbox/{tool-name}/{tool-name}.yaml`
+- Each tool gets its own directory
+- Version pins are numbered files (e.g., `0.9.yaml`) alongside the main spec
+- No letter-prefix subdirectories needed (the official toolbox uses them for scale, but your toolbox doesn't need to)
+
+## Included Examples
+
+| Tool | Protocol | Description |
+|------|----------|-------------|
+| echo | REST | HTTP echo service for testing |
+| example-docs | Website | Example documentation site scraping |
+| example-mcp | MCP | Weather data MCP server |
+| example-skill | Skill | Release notes generator with filesystem isolation |
+| hello-world | REST | Greeting API via httpbin |
+
+## Adding a Tool
+
+Create a spec at `toolbox/{name}/{name}.yaml`:
+
+```yaml
+name: my-api
+description: My custom API tool
+version: "1.0"
+category: data
+tags: [api, custom]
+protocol: rest
+
+connection:
+  base_url: https://api.example.com
+
+auth:
+  - type: api_key
+    key_env: MY_API_KEY
+    inject:
+      location: header
+      param: Authorization
+      prefix: "Bearer"
+
+actions:
+  - name: get-data
+    description: Fetch data from the API
+    method: GET
+    path: /data
+    params:
+      - name: query
+        type: string
+        required: true
+        in: query
+```
+
+Or scaffold one with the CLI:
+
+```bash
+clictl init my-api
+```
+
+## Syncing
+
+### Automatic (CI)
+
+The included GitHub Action runs `clictl toolbox sync` on every push to `main` that changes files in `toolbox/`.
+
+### Manual
+
+```bash
+clictl toolbox sync
+clictl toolbox sync --dry-run    # preview without pushing
+```
+
+## Configuration
+
+`.clictl.yaml` tells the CLI where to sync:
+
+```yaml
+workspace: "your-workspace-slug"
+spec_paths:
+  - "toolbox/"
+branches:
+  - main
+```
+
+## Links
+
+- [Official Toolbox](https://github.com/clictl/toolbox) - 223+ curated tool specs
+- [Spec Format](https://github.com/clictl/toolbox/blob/main/SPEC_SCHEMA.md) - Full spec schema
+- [clictl.dev](https://clictl.dev) - Website

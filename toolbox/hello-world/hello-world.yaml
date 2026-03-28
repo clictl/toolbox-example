@@ -1,0 +1,55 @@
+name: hello-world
+description: A simple hello world API for testing and learning clictl
+version: "1.0"
+category: demo
+tags: [demo, hello, testing, example]
+protocol: rest
+owner_name: clictl
+website: https://clictl.dev
+pricing_model: free
+
+connection:
+  base_url: https://httpbin.org
+  timeout: 10s
+  headers:
+    Accept: application/json
+
+actions:
+  - name: greet
+    description: Returns a greeting message by echoing your name via httpbin
+    method: GET
+    path: /get
+    params:
+      - name: name
+        type: string
+        required: true
+        description: "Name to greet, e.g. 'World'"
+        in: query
+      - name: greeting
+        type: string
+        default: "Hello"
+        description: "Greeting prefix, e.g. 'Hi', 'Hey'"
+        in: query
+    transform:
+      extract: "$.args"
+
+  - name: echo
+    description: Echo back any key-value pairs you send as query parameters
+    method: GET
+    path: /get
+    params:
+      - name: message
+        type: string
+        required: true
+        description: "Message to echo back"
+        in: query
+    transform:
+      extract: "$.args"
+
+  - name: headers
+    description: Show the request headers that were sent
+    method: GET
+    path: /headers
+    transform:
+      - extract: "$.headers"
+      - select: ["Host", "User-Agent", "Accept"]

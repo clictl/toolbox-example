@@ -1,0 +1,22 @@
+name: Sync to clictl
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'toolbox/**'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install clictl
+        run: curl -fsSL https://clictl.dev/install.sh | sh
+
+      - name: Sync toolbox
+        run: clictl toolbox sync
+        env:
+          CLICTL_API_KEY: ${{ secrets.CLICTL_API_KEY }}
+          CLICTL_WORKSPACE: ${{ secrets.CLICTL_WORKSPACE }}
