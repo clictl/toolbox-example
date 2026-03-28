@@ -8,10 +8,9 @@ A working example of a [clictl](https://clictl.dev) toolbox repository. Use this
 ## Quick Start
 
 1. Use this repo as a template on GitHub
-2. Edit `toolbox/.clictl.yaml` with your workspace slug
-3. Add `CLICTL_API_KEY` to your repo secrets (Settings > Secrets > Actions)
-4. Add tool specs under `toolbox/`
-5. Push. The GitHub Action syncs your tools automatically.
+2. Add `CLICTL_API_KEY` to your repo secrets (Settings > Secrets > Actions)
+3. Add tool specs under `toolbox/`
+4. Push. The GitHub Action syncs your tools automatically.
 
 ## Folder Structure
 
@@ -104,15 +103,15 @@ clictl toolbox sync --dry-run    # preview without pushing
 
 ## Configuration
 
-`toolbox/.clictl.yaml` tells the CLI where to sync. Place it inside the `toolbox/` folder alongside your specs:
+`toolbox/.clictl.yaml` configures sync behavior. Place it inside the `toolbox/` folder alongside your specs:
 
 ```yaml
-workspace: "your-workspace-slug"
+# namespace: "@mycompany"   # optional publisher namespace
 branches:
   - main
 ```
 
-The CLI auto-discovers specs in the same directory as `.clictl.yaml`. No `spec_paths` needed.
+The workspace is determined by your API key (`CLICTL_API_KEY`), not the config file. The CLI auto-discovers specs in the same directory as `.clictl.yaml`.
 
 ## Links
 

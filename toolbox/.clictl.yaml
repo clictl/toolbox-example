@@ -1,9 +1,7 @@
 # clictl Toolbox Configuration
 # Place this file inside your toolbox/ folder alongside your tool specs.
 # The CLI scans this directory for YAML specs when syncing.
-
-# Your workspace slug (required for sync)
-workspace: ""
+# Workspace is determined by your API key (clictl login or CLICTL_API_KEY).
 
 # Publisher namespace (optional, for published tools)
 # namespace: "@mycompany"
