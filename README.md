@@ -16,7 +16,7 @@ A working example of a [clictl](https://clictl.dev) toolbox repository. Use this
 
 ```
 toolbox/                              # All tool specs live here
-  .clictl.yaml                        # Toolbox config (workspace, branches)
+  .clictl.yaml                        # Toolbox config (namespace, branches)
   echo/
     echo.yaml                         # REST API spec
     0.9.yaml                          # Pinned older version
