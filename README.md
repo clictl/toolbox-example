@@ -5,8 +5,8 @@ A working example of a [clictl](https://clictl.dev) toolbox repository. Use this
 ## Quick Start
 
 1. Use this repo as a template on GitHub
-2. Edit `.clictl.yaml` with your workspace slug
-3. Add `CLICTL_API_KEY` and `CLICTL_WORKSPACE` to your repo secrets
+2. Edit `toolbox/.clictl.yaml` with your workspace slug
+3. Add `CLICTL_API_KEY` to your repo secrets (Settings > Secrets > Actions)
 4. Add tool specs under `toolbox/`
 5. Push. The GitHub Action syncs your tools automatically.
 
@@ -14,6 +14,7 @@ A working example of a [clictl](https://clictl.dev) toolbox repository. Use this
 
 ```
 toolbox/                              # All tool specs live here
+  .clictl.yaml                        # Toolbox config (workspace, branches)
   echo/
     echo.yaml                         # REST API spec
     0.9.yaml                          # Pinned older version
@@ -25,7 +26,6 @@ toolbox/                              # All tool specs live here
     example-skill.yaml                # Skill spec
   hello-world/
     hello-world.yaml                  # REST API spec
-.clictl.yaml                          # Toolbox config (workspace, spec paths)
 .github/workflows/sync-to-clictl.yml  # CI sync on push
 ```
 
@@ -101,15 +101,15 @@ clictl toolbox sync --dry-run    # preview without pushing
 
 ## Configuration
 
-`.clictl.yaml` tells the CLI where to sync:
+`toolbox/.clictl.yaml` tells the CLI where to sync. Place it inside the `toolbox/` folder alongside your specs:
 
 ```yaml
 workspace: "your-workspace-slug"
-spec_paths:
-  - "toolbox/"
 branches:
   - main
 ```
+
+The CLI auto-discovers specs in the same directory as `.clictl.yaml`. No `spec_paths` needed.
 
 ## Links
 

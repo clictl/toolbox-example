@@ -19,4 +19,3 @@ jobs:
         run: clictl toolbox sync
         env:
           CLICTL_API_KEY: ${{ secrets.CLICTL_API_KEY }}
-          CLICTL_WORKSPACE: ${{ secrets.CLICTL_WORKSPACE }}
