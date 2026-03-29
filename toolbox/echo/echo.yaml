@@ -1,15 +1,13 @@
+spec: "1.0"
 name: echo
 description: HTTP echo service for testing requests, responses, and status codes
 version: "1.0"
 category: demo
 tags: [demo, testing, http, echo, debug]
-protocol: rest
-owner_name: clictl
-website: https://httpbin.org
-pricing_model: free
 
-connection:
-  base_url: https://httpbin.org
+server:
+  type: http
+  url: https://httpbin.org
   timeout: 10s
   headers:
     Accept: application/json
@@ -17,8 +15,9 @@ connection:
 actions:
   - name: get
     description: Send a GET request and see the parsed response
-    method: GET
-    path: /get
+    request:
+      method: GET
+      path: /get
     params:
       - name: key
         type: string
@@ -31,13 +30,15 @@ actions:
 
   - name: post
     description: Send data via POST and see it echoed back
-    method: POST
-    path: /post
+    request:
+      method: POST
+      path: /post
 
   - name: status
     description: Get a response with a specific HTTP status code
-    method: GET
-    path: /status/{code}
+    request:
+      method: GET
+      path: /status/{code}
     params:
       - name: code
         type: int
@@ -47,22 +48,27 @@ actions:
 
   - name: ip
     description: Get the client IP address
-    method: GET
-    path: /ip
+    request:
+      method: GET
+      path: /ip
     transform:
-      extract: "$.origin"
+      - type: extract
+        path: "$.origin"
 
   - name: user-agent
     description: Get the User-Agent header value
-    method: GET
-    path: /user-agent
+    request:
+      method: GET
+      path: /user-agent
     transform:
-      extract: "$.user-agent"
+      - type: extract
+        path: "$.user-agent"
 
   - name: delay
     description: Respond after a specified delay in seconds
-    method: GET
-    path: /delay/{seconds}
+    request:
+      method: GET
+      path: /delay/{seconds}
     params:
       - name: seconds
         type: int

@@ -1,12 +1,9 @@
+spec: "1.0"
 name: example-docs
 description: Example documentation site spec for learning the website format
 version: "1.0"
 category: demo
 tags: [demo, documentation, example]
-protocol: https
-owner_name: clictl
-website: https://clictl.dev/docs
-pricing_model: free
 
 site:
   url: https://clictl.dev/docs

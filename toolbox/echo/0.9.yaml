@@ -1,15 +1,13 @@
+spec: "1.0"
 name: echo
 description: HTTP echo service for testing requests and responses
 version: "0.9"
 category: demo
 tags: [demo, testing, http, echo]
-protocol: rest
-owner_name: clictl
-website: https://httpbin.org
-pricing_model: free
 
-connection:
-  base_url: https://httpbin.org
+server:
+  type: http
+  url: https://httpbin.org
   timeout: 10s
   headers:
     Accept: application/json
@@ -17,8 +15,9 @@ connection:
 actions:
   - name: get
     description: Send a GET request and see the parsed response
-    method: GET
-    path: /get
+    request:
+      method: GET
+      path: /get
     params:
       - name: key
         type: string
@@ -27,13 +26,15 @@ actions:
 
   - name: post
     description: Send data via POST and see it echoed back
-    method: POST
-    path: /post
+    request:
+      method: POST
+      path: /post
 
   - name: status
     description: Get a response with a specific HTTP status code
-    method: GET
-    path: /status/{code}
+    request:
+      method: GET
+      path: /status/{code}
     params:
       - name: code
         type: int

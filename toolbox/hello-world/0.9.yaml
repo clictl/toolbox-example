@@ -1,22 +1,21 @@
+spec: "1.0"
 name: hello-world
 description: A simple hello world API for testing clictl
 version: "0.9"
 category: demo
 tags: [demo, hello, testing]
-protocol: rest
-owner_name: clictl
-website: https://clictl.dev
-pricing_model: free
 
-connection:
-  base_url: https://httpbin.org
+server:
+  type: http
+  url: https://httpbin.org
   timeout: 10s
 
 actions:
   - name: greet
     description: Returns a greeting message by echoing your name
-    method: GET
-    path: /get
+    request:
+      method: GET
+      path: /get
     params:
       - name: name
         type: string
@@ -24,4 +23,5 @@ actions:
         description: "Name to greet"
         in: query
     transform:
-      extract: "$.args"
+      - type: extract
+        path: "$.args"
