@@ -39,42 +39,41 @@ toolbox/                              # All tool specs live here
 
 ## Included Examples
 
-| Tool | Protocol | Description |
-|------|----------|-------------|
-| echo | REST | HTTP echo service for testing |
-| example-docs | Website | Example documentation site scraping |
-| example-mcp | MCP | Weather data MCP server |
-| example-skill | Skill | Release notes generator with filesystem isolation |
-| hello-world | REST | Greeting API via httpbin |
+| Tool | Server Type | Description |
+|------|-------------|-------------|
+| echo | http | HTTP echo service for testing |
+| example-docs | http | Example documentation site scraping |
+| example-mcp | stdio | Weather data MCP server |
+| example-skill | skill | Release notes generator with filesystem isolation |
+| hello-world | http | Greeting API via httpbin |
 
 ## Adding a Tool
 
 Create a spec at `toolbox/{name}/{name}.yaml`:
 
 ```yaml
+spec: "1.0"
 name: my-api
 description: My custom API tool
 version: "1.0"
 category: data
 tags: [api, custom]
-protocol: rest
 
-connection:
-  base_url: https://api.example.com
+server:
+  type: http
+  url: https://api.example.com
 
 auth:
-  - type: api_key
-    key_env: MY_API_KEY
-    inject:
-      location: header
-      param: Authorization
-      prefix: "Bearer"
+  env: MY_API_KEY
+  header: Authorization
+  value: "Bearer ${MY_API_KEY}"
 
 actions:
   - name: get-data
     description: Fetch data from the API
-    method: GET
-    path: /data
+    request:
+      method: GET
+      path: /data
     params:
       - name: query
         type: string
@@ -106,7 +105,7 @@ clictl toolbox sync --dry-run    # preview without pushing
 `toolbox/.clictl.yaml` configures sync behavior. Place it inside the `toolbox/` folder alongside your specs:
 
 ```yaml
-# namespace: "@mycompany"   # optional publisher namespace
+# namespace: "mycompany"   # optional publisher namespace
 branches:
   - main
 ```
@@ -116,7 +115,7 @@ The workspace is determined by your API key (`CLICTL_API_KEY`), not the config f
 ## Links
 
 - [Official Toolbox](https://github.com/clictl/toolbox) - 223+ curated tool specs
-- [Spec Format](https://github.com/clictl/toolbox/blob/main/SPEC_SCHEMA.md) - Full spec schema
+- [Spec Format](https://github.com/clictl/toolbox/blob/main/docs/spec-reference.md) - Full spec schema
 - [clictl.dev](https://clictl.dev) - Website
 
 A [Soap Bucket LLC](https://www.soapbucket.org) project.

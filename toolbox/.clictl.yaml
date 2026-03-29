@@ -4,7 +4,7 @@
 # Workspace is determined by your API key (clictl login or CLICTL_API_KEY).
 
 # Publisher namespace (optional, for published tools)
-# namespace: "@mycompany"
+# namespace: mycompany
 
 # Only sync from these branches (default: main, master)
 branches:
