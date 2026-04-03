@@ -1,0 +1,11 @@
+schema_version: "1"
+
+skills:
+  include:
+    - skills/commit
+    - skills/review
+    - skills/test-writer
+    - skills/debug
+    - skills/ship
+
+workspace: clictl-example

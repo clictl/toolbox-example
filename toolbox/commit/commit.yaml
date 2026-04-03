@@ -1,0 +1,11 @@
+schema_version: "1"
+name: commit
+description: Generate conventional commit messages from staged changes
+version: "1.0"
+category: developer
+tags: [git, commit, conventional-commits, workflow]
+
+source:
+  repo: clictl/toolbox-example
+  path: skills/commit/
+  ref: main

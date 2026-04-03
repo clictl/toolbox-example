@@ -1,0 +1,11 @@
+schema_version: "1"
+name: test-writer
+description: Generate unit tests for functions and modules
+version: "1.0"
+category: developer
+tags: [testing, unit-tests, quality, tdd]
+
+source:
+  repo: clictl/toolbox-example
+  path: skills/test-writer/
+  ref: main

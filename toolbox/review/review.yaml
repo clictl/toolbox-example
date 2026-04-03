@@ -1,0 +1,11 @@
+schema_version: "1"
+name: review
+description: Perform code review on staged changes or pull requests
+version: "1.0"
+category: developer
+tags: [git, code-review, quality, workflow]
+
+source:
+  repo: clictl/toolbox-example
+  path: skills/review/
+  ref: main

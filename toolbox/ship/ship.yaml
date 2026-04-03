@@ -1,0 +1,11 @@
+schema_version: "1"
+name: ship
+description: Stage, commit, push, and open a pull request in one flow
+version: "1.0"
+category: developer
+tags: [git, shipping, pull-request, workflow]
+
+source:
+  repo: clictl/toolbox-example
+  path: skills/ship/
+  ref: main
