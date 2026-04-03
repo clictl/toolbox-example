@@ -71,9 +71,7 @@ auth:
 actions:
   - name: get-data
     description: Fetch data from the API
-    request:
-      method: GET
-      path: /data
+    path: /data
     params:
       - name: query
         type: string
