@@ -1,60 +1,62 @@
-spec: "1.0"
+spec: '1.0'
 name: hello-world
 description: A simple hello world API for testing and learning clictl
-version: "1.0"
+version: '1.0'
 category: demo
-tags: [demo, hello, testing, example]
-
+tags:
+- demo
+- hello
+- testing
+- example
 server:
-  type: http
   url: https://httpbin.org
   timeout: 10s
   headers:
     Accept: application/json
-
 actions:
-  - name: greet
-    description: Returns a greeting message by echoing your name via httpbin
-    request:
-      method: GET
-      path: /get
-    params:
-      - name: name
-        type: string
-        required: true
-        description: "Name to greet, e.g. 'World'"
-        in: query
-      - name: greeting
-        type: string
-        default: "Hello"
-        description: "Greeting prefix, e.g. 'Hi', 'Hey'"
-        in: query
-    transform:
-      - type: extract
-        path: "$.args"
-
-  - name: echo
-    description: Echo back any key-value pairs you send as query parameters
-    request:
-      method: GET
-      path: /get
-    params:
-      - name: message
-        type: string
-        required: true
-        description: "Message to echo back"
-        in: query
-    transform:
-      - type: extract
-        path: "$.args"
-
-  - name: headers
-    description: Show the request headers that were sent
-    request:
-      method: GET
-      path: /headers
-    transform:
-      - type: extract
-        path: "$.headers"
-      - type: json
-        select: ["Host", "User-Agent", "Accept"]
+- name: greet
+  description: Returns a greeting message by echoing your name via httpbin
+  request:
+    method: GET
+    path: /get
+  params:
+  - name: name
+    type: string
+    required: true
+    description: Name to greet, e.g. 'World'
+    in: query
+  - name: greeting
+    type: string
+    default: Hello
+    description: Greeting prefix, e.g. 'Hi', 'Hey'
+    in: query
+  transform:
+  - type: extract
+    path: $.args
+- name: echo
+  description: Echo back any key-value pairs you send as query parameters
+  request:
+    method: GET
+    path: /get
+  params:
+  - name: message
+    type: string
+    required: true
+    description: Message to echo back
+    in: query
+  transform:
+  - type: extract
+    path: $.args
+- name: headers
+  description: Show the request headers that were sent
+  request:
+    method: GET
+    path: /headers
+  transform:
+  - type: extract
+    path: $.headers
+  - type: json
+    select:
+    - Host
+    - User-Agent
+    - Accept

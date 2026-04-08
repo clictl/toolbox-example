@@ -1,44 +1,40 @@
-spec: "1.0"
+spec: '1.0'
 name: example-mcp
 description: Example MCP server that provides weather data via the Model Context Protocol
-version: "1.0"
+version: '1.0'
 category: demo
-tags: [demo, mcp, weather, example]
-
+tags:
+- demo
+- mcp
+- weather
+- example
 package:
   registry: npm
-  name: "@example/weather-mcp"
-  version: "1.0.0"
+  name: '@example/weather-mcp'
+  version: 1.0.0
   manager: npx
-
 auth:
   env: WEATHER_API_KEY
-  inject: env
-
-server:
-  type: stdio
-
+server: {}
 actions:
-  - name: get_forecast
-    description: "Get weather forecast for a location"
-  - name: get_current
-    description: "Get current weather conditions"
-  - name: get_alerts
-    description: "Get active weather alerts for a region"
-    destructive: false
-
+- name: get_forecast
+  description: Get weather forecast for a location
+- name: get_current
+  description: Get current weather conditions
+- name: get_alerts
+  description: Get active weather alerts for a region
+  destructive: false
 tool_transforms:
   get_forecast:
-    - type: truncate
-      max_items: 7
+  - type: truncate
+    max_items: 7
+instructions: 'This server provides weather data. Use get_current for
 
-instructions: |
-  This server provides weather data. Use get_current for
   current conditions and get_forecast for multi-day forecasts.
 
+  '
 resources:
   expose: all
-
 install_mode:
   default: both
   allow_mcp: true

@@ -1,6 +1,6 @@
 # clictl Toolbox Example
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Use Template](https://img.shields.io/badge/Use_Template-blue?logo=github)](https://github.com/clictl/toolbox-example/generate)
 
 A working example of a [clictl](https://clictl.dev) toolbox repository. Use this as a template for creating and publishing your own tools.

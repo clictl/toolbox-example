@@ -1,77 +1,74 @@
-spec: "1.0"
+spec: '1.0'
 name: echo
 description: HTTP echo service for testing requests, responses, and status codes
-version: "1.0"
+version: '1.0'
 category: demo
-tags: [demo, testing, http, echo, debug]
-
+tags:
+- demo
+- testing
+- http
+- echo
+- debug
 server:
-  type: http
   url: https://httpbin.org
   timeout: 10s
   headers:
     Accept: application/json
-
 actions:
-  - name: get
-    description: Send a GET request and see the parsed response
-    request:
-      method: GET
-      path: /get
-    params:
-      - name: key
-        type: string
-        description: "Any query parameter key"
-        in: query
-      - name: value
-        type: string
-        description: "Any query parameter value"
-        in: query
-
-  - name: post
-    description: Send data via POST and see it echoed back
-    request:
-      method: POST
-      path: /post
-
-  - name: status
-    description: Get a response with a specific HTTP status code
-    request:
-      method: GET
-      path: /status/{code}
-    params:
-      - name: code
-        type: int
-        required: true
-        description: "HTTP status code to return, e.g. 200, 404, 500"
-        in: path
-
-  - name: ip
-    description: Get the client IP address
-    request:
-      method: GET
-      path: /ip
-    transform:
-      - type: extract
-        path: "$.origin"
-
-  - name: user-agent
-    description: Get the User-Agent header value
-    request:
-      method: GET
-      path: /user-agent
-    transform:
-      - type: extract
-        path: "$.user-agent"
-
-  - name: delay
-    description: Respond after a specified delay in seconds
-    request:
-      method: GET
-      path: /delay/{seconds}
-    params:
-      - name: seconds
-        type: int
-        required: true
-        description: "Number of seconds to delay (max 10)"
-        in: path
+- name: get
+  description: Send a GET request and see the parsed response
+  request:
+    method: GET
+    path: /get
+  params:
+  - name: key
+    type: string
+    description: Any query parameter key
+    in: query
+  - name: value
+    type: string
+    description: Any query parameter value
+    in: query
+- name: post
+  description: Send data via POST and see it echoed back
+  request:
+    method: POST
+    path: /post
+- name: status
+  description: Get a response with a specific HTTP status code
+  request:
+    method: GET
+    path: /status/{code}
+  params:
+  - name: code
+    type: int
+    required: true
+    description: HTTP status code to return, e.g. 200, 404, 500
+    in: path
+- name: ip
+  description: Get the client IP address
+  request:
+    method: GET
+    path: /ip
+  transform:
+  - type: extract
+    path: $.origin
+- name: user-agent
+  description: Get the User-Agent header value
+  request:
+    method: GET
+    path: /user-agent
+  transform:
+  - type: extract
+    path: $.user-agent
+- name: delay
+  description: Respond after a specified delay in seconds
+  request:
+    method: GET
+    path: /delay/{seconds}
+  params:
+  - name: seconds
+    type: int
+    required: true
+    description: Number of seconds to delay (max 10)
+    in: path
