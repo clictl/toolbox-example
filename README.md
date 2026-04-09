@@ -39,11 +39,11 @@ toolbox/                              # All tool specs live here
 
 ## Included Examples
 
-| Tool | Server Type | Description |
-|------|-------------|-------------|
+| Tool | Protocol | Description |
+|------|----------|-------------|
 | echo | http | HTTP echo service for testing |
-| example-docs | http | Example documentation site scraping |
-| example-mcp | stdio | Weather data MCP server |
+| example-docs | website | Example documentation site scraping |
+| example-mcp | mcp | Weather data MCP server |
 | example-skill | skill | Release notes generator with filesystem isolation |
 | hello-world | http | Greeting API via httpbin |
 
@@ -54,19 +54,18 @@ Create a spec at `toolbox/{name}/{name}.yaml`:
 ```yaml
 spec: "1.0"
 name: my-api
+protocol: http
 description: My custom API tool
 version: "1.0"
 category: data
 tags: [api, custom]
 
 server:
-  type: http
   url: https://api.example.com
 
 auth:
   env: MY_API_KEY
-  header: Authorization
-  value: "Bearer ${MY_API_KEY}"
+  header: "Authorization: Bearer ${MY_API_KEY}"
 
 actions:
   - name: get-data
@@ -76,7 +75,6 @@ actions:
       - name: query
         type: string
         required: true
-        in: query
 ```
 
 Or scaffold one with the CLI:
@@ -113,7 +111,7 @@ The workspace is determined by your API key (`CLICTL_API_KEY`), not the config f
 ## Links
 
 - [Official Toolbox](https://github.com/clictl/toolbox) - 223+ curated tool specs
-- [Spec Format](https://github.com/clictl/toolbox/blob/main/docs/spec-reference.md) - Full spec schema
+- [Spec Format](https://clictl.dev/spec) - Full spec reference
 - [clictl.dev](https://clictl.dev) - Website
 
 A [Soap Bucket LLC](https://www.soapbucket.org) project.

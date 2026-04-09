@@ -40,3 +40,4 @@ actions:
     required: true
     description: HTTP status code to return
     in: path
+protocol: http

@@ -1,11 +1,15 @@
-schema_version: "1"
+schema_version: '1'
 name: debug
 description: Systematic debugging workflow for errors and failures
-version: "1.0"
+version: '1.0'
 category: developer
-tags: [debugging, errors, troubleshooting, workflow]
-
+tags:
+- debugging
+- errors
+- troubleshooting
+- workflow
 source:
   repo: clictl/toolbox-example
   path: skills/debug/
   ref: main
+protocol: skill

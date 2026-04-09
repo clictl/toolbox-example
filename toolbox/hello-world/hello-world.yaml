@@ -60,3 +60,4 @@ actions:
     - Host
     - User-Agent
     - Accept
+protocol: http

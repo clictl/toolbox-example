@@ -40,3 +40,4 @@ install_mode:
   allow_mcp: true
   allow_skill: true
   keep_alive: 300s
+protocol: mcp

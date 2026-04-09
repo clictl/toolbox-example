@@ -72,3 +72,4 @@ actions:
     required: true
     description: Number of seconds to delay (max 10)
     in: path
+protocol: http

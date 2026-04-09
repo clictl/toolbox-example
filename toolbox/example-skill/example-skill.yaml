@@ -1,28 +1,37 @@
-spec: "1.0"
+spec: '1.0'
 name: example-skill
 description: Example skill that teaches agents to generate release notes from git history
-version: "1.0"
+version: '1.0'
 category: developer
-tags: [demo, skill, release-notes, git, example]
-
+tags:
+- demo
+- skill
+- release-notes
+- git
+- example
 source:
   repo: clictl/example-repo
   path: skills/release-notes/
   ref: main
   files:
-    - path: SKILL.md
-      description: Instructions for generating release notes
-    - path: release_notes.py
-      description: Python script to parse git log and format notes
-
-requires_tools: [bash, read, write]
-
+  - path: SKILL.md
+    description: Instructions for generating release notes
+  - path: release_notes.py
+    description: Python script to parse git log and format notes
+requires_tools:
+- bash
+- read
+- write
 permissions:
   filesystem:
-    read: ["./"]
-    write: ["./CHANGELOG.md", "./RELEASE_NOTES.md"]
-  env: ["GITHUB_TOKEN"]
-
+    read:
+    - ./
+    write:
+    - ./CHANGELOG.md
+    - ./RELEASE_NOTES.md
+  env:
+  - GITHUB_TOKEN
 runtime:
   language: python
   manager: uvx
+protocol: skill
